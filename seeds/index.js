@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const mongooseeder = require("mongooseeder");
 const models = require("../models");
-const { User, Commentable } = require("../models");
+const {User, Post, Comment} = require("../models");
 
 //for new names, etc.
 const faker = require("faker");
@@ -37,18 +37,32 @@ mongooseeder.seed({
 
     let posts = [];
 
-    let p = new Commentable({
-      user: users[0],
-      score: faker.random.number(),
-      parentId: 0,
-      text: faker.lorem.paragraph(),
-      title: faker.lorem.sentence()
+    users.forEach(user => {
+      let p = new Post({
+        user: user,
+        score: faker.random.number(),
+        depth: 0,
+        text: faker.lorem.paragraph(),
+        title: faker.lorem.sentence()
+      });
+      posts.push(p);
     });
 
-    posts.push(p);
+    let comments = [];
+
+    posts.forEach(post => {
+      let p = new Comment({
+        user: users[0],
+        score: faker.random.number(),
+        depth: 1,
+        post: post,
+        text: faker.lorem.paragraph()
+      });
+      comments.push(p);
+    });
 
     const promises = [];
-    const collections = [users, posts];
+    const collections = [users, posts, comments];
 
     collections.forEach(collection => {
       collection.forEach(model => {

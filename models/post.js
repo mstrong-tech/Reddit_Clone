@@ -1,16 +1,12 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var CommentableSchema = new Schema(
+var PostSchema = new Schema(
   {
     title: String,
     text: String,
     score: Number,
-    depth: Number,
-    parentId: {
-      type: Schema.Types.ObjectId,
-      ref: "Commentable"
-    },
+    depth: 0,
     user: {
       type: Schema.Types.ObjectId,
       ref: "User"
@@ -22,6 +18,6 @@ var CommentableSchema = new Schema(
   }
 );
 
-let Commentable = mongoose.model("Commentable", CommentableSchema);
+let Post = mongoose.model("Post", PostSchema);
 
-module.exports = Commentable;
+module.exports = Post;

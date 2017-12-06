@@ -1,5 +1,4 @@
 <div class='container'>
-
   <div class='row'>
     <div class='col-sm-12'>
       <h1>{{post.title}}</h1>
@@ -12,14 +11,26 @@
   </p>
 
   <div class='row'>
-    <div class='col-sm-2 offset-{{comment.depth}}'>
+    <div class='col-sm-2'>
       <a href='/'>Upvote</a> / <a href='/'>Downvote</a>
     </div>
   </div>
+  <a href='/posts/{{post.id}}/newcomment'>Comment</a>
+</div>
 
+<!-- offset-{{comment.depth}} -->
 
+<hr>
 
-
-<a href='/'>Comment</a>
-
+<div class='container'>
+  {{#each comments as |comment|}}
+    <div class='row'>
+      <div class='col-sm-2 offset-sm-{{comment-depth}}'>
+        <a href='/'>Upvote</a> / <a href='/'>Downvote</a>
+      </div>
+      <div class='col-sm-4'>
+        {{comment.text}}
+      </div>
+    </div>
+  {{/each}}
 </div>

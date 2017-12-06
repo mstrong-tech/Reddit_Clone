@@ -10,6 +10,8 @@ var models = {};
 // Load models and attach to models here
 models.User = require("./user");
 models.Commentable = require("./commentable");
+models.Comment = require("./comment");
+models.Post = require("./post");
 
 //... more models
 

@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const models = require("../models");
 const User = models.User;
 const Commentable = models.Commentable;
+const Post = models.Post;
 //Commentable
 
 router.post("/newpost", function(req, res, next) {
@@ -13,7 +14,7 @@ router.post("/newpost", function(req, res, next) {
   console.log("post started");
   console.log("this is the username" + req.body.username);
 
-  User.findOne({ username: `${req.body.username}` }).then(result => {
+  User.findOne({username: `${req.body.username}`}).then(result => {
     // console.log(result[0]._id)
 
     console.log("this is the user.find then body");
@@ -21,11 +22,11 @@ router.post("/newpost", function(req, res, next) {
       user: result,
       title: req.body.title,
       text: req.body.text,
-      parentId: 0,
+      depth: 0,
       score: 0
     };
 
-    Commentable.create(newPost).then(() => {
+    Post.create(newPost).then(() => {
       res.send("respond with a resource");
     });
   });
