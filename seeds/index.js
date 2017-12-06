@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 const mongooseeder = require("mongooseeder");
 const models = require("../models");
+
+//for new names, etc.
 const faker = require("faker");
+
+//for database
 var env = process.env.NODE_ENV || "development";
 var config = require("./../config/mongo")[env];
 
@@ -22,6 +26,7 @@ mongooseeder.seed({
     // Example:
 
     let users = [];
+    // let posts = [];
 
     for (var i = 0; i < 10; i++) {
       let p = models.User.create({
@@ -32,6 +37,21 @@ mongooseeder.seed({
       });
       users.push(p);
     }
+
+    // models.User.find({}, {_id: 1}).then(arr => {
+    //   arr.forEach(obj => {
+    //     let p = models.Commentable.create({
+    //       userId: obj._id,
+    //       score: faker.random.number(),
+    //       parentId: 0,
+    //       text: faker.lorem.paragraph(),
+    //       title: faker.lorem.sentence()
+    //     });
+    //     posts.push(p);
+    //   });
+    // });
+
+    // let userAndPosts = users.concat(posts);
 
     return Promise.all(users);
 
