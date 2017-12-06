@@ -38,6 +38,15 @@ mongooseeder.seed({
       users.push(p);
     }
 
+    let p = models.Commentable.create({
+      userId: 00000000000000,
+      score: faker.random.number(),
+      parentId: 0,
+      text: faker.lorem.paragraph(),
+      title: faker.lorem.sentence()
+    });
+
+    users.push(p);
     // models.User.find({}, {_id: 1}).then(arr => {
     //   arr.forEach(obj => {
     //     let p = models.Commentable.create({
@@ -52,7 +61,6 @@ mongooseeder.seed({
     // });
 
     // let userAndPosts = users.concat(posts);
-
     return Promise.all(users);
 
     // come back

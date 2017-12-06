@@ -1,17 +1,22 @@
 var express = require("express");
 var router = express.Router();
+
+//for accessing database
 const mongoose = require("mongoose");
-const mongooseeder = require("mongooseeder");
 const models = require("../models");
 const User = models.User;
 const Commentable = models.Commentable;
+//Commentable
 
-/* GET users listing. */
 router.post("/newpost", function(req, res, next) {
+  //testing callback
   console.log("post started");
-  User.find({ username: req.body.username }).then(result => {
+  console.log("this is the username" + req.body.username);
+
+  User.find({username: `${req.body.username}`}).then(result => {
     // console.log(result[0]._id)
 
+    console.log("this is the user.find then body");
     let newPost = {
       userId: result[0]._id,
       title: req.body.title,
@@ -20,9 +25,12 @@ router.post("/newpost", function(req, res, next) {
       score: 0
     };
 
-    Commentable.create(newPost);
-    res.send("respond with a resource");
+    Commentable.create(newPost).then(() => {
+      res.send("respond with a resource");
+    });
   });
+
+  //end of post callback
 });
 
 router.get("/newpost", (req, res, next) => {

@@ -9,6 +9,8 @@ var models = {};
 
 // Load models and attach to models here
 models.User = require("./user");
+models.Commentable = require("./Commentable");
+
 //... more models
 
 module.exports = models;

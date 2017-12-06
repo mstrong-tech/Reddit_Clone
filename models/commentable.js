@@ -6,8 +6,8 @@ var CommentableSchema = new Schema(
     title: String,
     userId: String,
     text: String,
-    score: Integer,
-    parentID: Integer
+    score: Number,
+    parentID: Number
   },
   {
     timestamps: true
