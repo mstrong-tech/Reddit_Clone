@@ -13,12 +13,12 @@ router.post("/newpost", function(req, res, next) {
   console.log("post started");
   console.log("this is the username" + req.body.username);
 
-  User.find({username: `${req.body.username}`}).then(result => {
+  User.findOne({ username: `${req.body.username}` }).then(result => {
     // console.log(result[0]._id)
 
     console.log("this is the user.find then body");
     let newPost = {
-      userId: result[0]._id,
+      user: result,
       title: req.body.title,
       text: req.body.text,
       parentId: 0,

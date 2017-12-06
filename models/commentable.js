@@ -4,11 +4,15 @@ var Schema = mongoose.Schema;
 var CommentableSchema = new Schema(
   {
     title: String,
-    userId: String,
     text: String,
     score: Number,
-    parentID: Number
+    parentId: Number,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }
   },
+
   {
     timestamps: true
   }
