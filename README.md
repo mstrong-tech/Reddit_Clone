@@ -47,4 +47,4 @@ npm start
 
 ## Authors
 
-* **Steven Li** - _Initial work_ -
+* **Liam Lee** - fork, updated -
